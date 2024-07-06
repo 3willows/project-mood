@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const api = 'https://api.github.com/';
 const token = process.env.GHTOKEN;
+const userAgent = process.env.USERAGENT;
 
 /* Default SVG -
  * Sent when the GitHub API Errors
@@ -21,12 +22,13 @@ const svgError = bf.create(format).replace(/>/, '><title>bad API request</title>
  * Takes in a public repository owner/repo, searches the first page of recent commits
  * Calculates the projects mood (patent pending) and returns a dynamic SVG file
  */
+
 app.get('/:owner/:repo.svg', (req, res) => {
 
     const options = {
         url: `${api}repos/${req.params.owner}/${req.params.repo}/commits?${token}`,
         headers: {
-            'User-Agent': process.env.USERAGENT
+            'User-Agent': `${userAgent}`
         }
     };
 
