@@ -13,7 +13,7 @@
     "supertest": "^4.0.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "deploy": "gcloud app deploy",
     "test": "mocha test/app.test.js --exit"
   },
